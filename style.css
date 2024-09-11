@@ -88,10 +88,10 @@ h1, span {
   display: flex;
   flex-direction: row;
   align-items: top;
-  justify-content: center;
-  height: 75%;
+  justify-content: left;
+  height: 354px;
   width: 100%;
-  
+  overflow: wrap;
 }
 
 .smallCard {
@@ -100,7 +100,17 @@ h1, span {
   background: rgb(85, 85, 85);
   margin: 25px;
   border-radius: 25px;
-  border-color: red;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+}
+
+.largeCard {
+  height: 780px;
+  width: 780px;
+  background: rgb(85, 85, 85);
+  margin: 25px;
+  border-radius: 25px;
   display: flex;
   align-items: top;
   justify-content: center;
@@ -111,19 +121,3 @@ h1, span {
   font-size: 50;
 }
 
-.mask-demo {
-  /* Add dimensions to span */
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  /* Add background color */
-  background-color: currentColor;
-  /* Add mask image, use variable to reduce duplication */
-  --svg: url('https://api.iconify.design/bi/bell-fill.svg');
-  -webkit-mask-image: var(--svg);
-  mask-image: var(--svg);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-}

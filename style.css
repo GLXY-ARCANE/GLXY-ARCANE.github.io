@@ -11,7 +11,7 @@
 .teko-regular {
   font-family: "Teko", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -33,10 +33,6 @@ h1 {
 
 h1, span {
   color: white;
-}
-
-span {
-  font-family: "Teko", sans-serif;
 }
 
 @property --angle{
@@ -92,17 +88,36 @@ span {
   display: flex;
   flex-direction: row;
   align-items: top;
-  justify-content: center;
-  height: 75%;
+  justify-content: left;
+  height: 354px;
   width: 100%;
-  
+  overflow: wrap;
 }
 
 .smallCard {
   height: 312px;
   width: 512px;
-  background: white;
+  background: rgb(85, 85, 85);
   margin: 25px;
   border-radius: 25px;
-  border-color: red;
+  display: flex;
+  align-items: top;
+  justify-content: center;
 }
+
+.largeCard {
+  height: 780px;
+  width: 780px;
+  background: rgb(85, 85, 85);
+  margin: 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+}
+
+.cardText {
+  font-family: "Teko", sans-serif;
+  font-size: 50;
+}
+

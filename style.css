@@ -11,7 +11,7 @@
 .teko-regular {
   font-family: "Teko", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -33,10 +33,6 @@ h1 {
 
 h1, span {
   color: white;
-}
-
-span {
-  font-family: "Teko", sans-serif;
 }
 
 @property --angle{
@@ -101,8 +97,33 @@ span {
 .smallCard {
   height: 312px;
   width: 512px;
-  background: white;
+  background: rgb(85, 85, 85);
   margin: 25px;
   border-radius: 25px;
   border-color: red;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+}
+
+.cardText {
+  font-family: "Teko", sans-serif;
+  font-size: 50;
+}
+
+.mask-demo {
+  /* Add dimensions to span */
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  /* Add background color */
+  background-color: currentColor;
+  /* Add mask image, use variable to reduce duplication */
+  --svg: url('https://api.iconify.design/bi/bell-fill.svg');
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }

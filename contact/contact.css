@@ -191,3 +191,73 @@ h1 {
   border-radius: 10px;
   border: 2px solid rgb(14, 14, 14);
 }
+
+/* Contact Page Styles */
+.contactSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+}
+
+.contactSection h2 {
+    font-family: "Lemon Milk", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+}
+
+.contactSection p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+}
+
+.contactDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.contactItem {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.contactItem h3 {
+    font-family: "Lemon Milk", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contactItem p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.contactItem a {
+    color: #00ff99;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contactItem a:hover {
+    color: #ff0095;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contactDetails {
+        flex-direction: column;
+    }
+
+    .contactItem {
+        width: 80%;
+    }
+}

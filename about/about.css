@@ -63,7 +63,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, black, rgb(14, 14, 14)); 
+    background: linear-gradient(180deg, black, rgb(14, 14, 14));
     padding: 2rem;
     color: white;
     text-align: center;
@@ -191,3 +191,47 @@ h1 {
   border-radius: 10px;
   border: 2px solid rgb(14, 14, 14);
 }
+
+.contentBox {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 80%;  /* Ensure content box doesn't stretch too wide */
+    background-color: rgb(30, 30, 30);  /* Dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.aboutContent h2 {
+    font-family: "Lemon Milk", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00ff99;
+}
+
+.aboutContent p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.aboutContent ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.2rem;
+}
+
+.aboutContent ul li {
+    margin-bottom: 0.8rem;
+}
+
+.aboutContent a {
+    color: #00ff99;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.aboutContent a:hover {
+    color: white;
+}
+

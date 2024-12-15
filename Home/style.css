@@ -22,7 +22,7 @@
 .aboutSection {
     flex: 1;
     min-width: 250px;
-    background-color: rgb(49, 50, 54);
+    background-color: rgb(30, 30, 30);
     padding: 2rem;
     text-align: center;
     border-radius: 15px;
@@ -33,7 +33,7 @@
 
 .aboutSection:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(189, 189, 189, 0.4);
+    box-shadow: 0 8px 16px rgb(86 111 194);
     border-color: #566fc2;
 }
 
@@ -62,7 +62,7 @@
 .goalsSection {
     flex: 1;
     min-width: 250px;
-    background-color: rgb(49, 50, 54);
+    background-color: rgb(30, 30, 30);
     padding: 2rem;
     text-align: center;
     border-radius: 15px;
@@ -75,6 +75,7 @@
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgb(86 111 194);
     border-color: #566fc2;
+    
 }
 
 .goalsSection h2 {
@@ -95,9 +96,6 @@
     margin: 0.5rem 0;
 }
 
-.goalsList li:hover {
-    color: #00ff99;
-}
 
 .footer {
     background-color: rgb(49, 50, 54);
@@ -142,34 +140,3 @@
     }
 }
 
-
-/* Custom Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgb(14, 14, 14);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(49, 50, 54);
-  border-radius: 10px;
-  border: 2px solid rgb(14, 14, 14);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(30, 30, 30);
-}
-
-::-webkit-scrollbar-horizontal {
-  height: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-  background-color: rgb(49, 50, 54);
-  border-radius: 10px;
-  border: 2px solid rgb(14, 14, 14);
-}

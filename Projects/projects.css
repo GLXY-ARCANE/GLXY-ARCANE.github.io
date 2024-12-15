@@ -33,15 +33,19 @@
     position: relative;
     padding: 1rem;
     background-color: rgb(49, 50, 54);
+    border: 2px solid rgb(49, 50, 54);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, transform 0.3s ease;
+   
 }
 
 .projectsSection li:hover {
-    background-color: #00ff99;
+    background-color: rgb(30, 30, 30);
     transform: scale(1.01);  /* Reduce from 1.1 to 1.05 to prevent overflow */
     transition: transform 0.2s ease;  /* Slightly faster transition */
+    border: 2px solid rgb(86 111 194);
+    box-shadow: 0 8px 16px rgb(86 111 194);
 }
 
 
@@ -61,3 +65,4 @@
     top: 50%;
     transform: translateY(-50%);
 }
+

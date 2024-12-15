@@ -16,7 +16,7 @@
 .contactSection h2 {
     font-family: "Lemon Milk", sans-serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .contactSection p {
@@ -27,18 +27,20 @@
 
 .contactDetails {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    justify-content: space-between; /* Separates items to left and right */
+    flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+    gap: 2rem; /* Adds spacing between items */
 }
 
 .contactItem {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgb(30, 30, 30);
     padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
+    border-radius: 15px;
+    border: 2px solid #00ff99;
+    width: 100%;
     max-width: 500px;
     text-align: left;
+    flex: 1; 
 }
 
 .contactItem h3 {
@@ -71,4 +73,14 @@
     .contactItem {
         width: 80%;
     }
+}
+
+.contactDetails .contactItem:not(#collab) {
+    max-width: 45%; /* Keeps the other items on the left side */
+}
+
+
+#collab {
+    text-align: left; /* Aligns content inside this box to the left */
+    max-width: 45%; /* Prevents it from taking too much space */
 }

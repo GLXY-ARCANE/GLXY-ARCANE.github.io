@@ -10,6 +10,10 @@
 }
 
 
+.content {
+  min-height: 55vh;
+}
+
 body {
     background-color: rgb(14, 14, 14);
     margin: 0;

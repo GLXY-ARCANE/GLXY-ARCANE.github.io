@@ -3,5 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/GLXY-ARCANE.github.io/', // Adjust for your repo
+  base: '/GLXY-ARCANE.github.io/', // Make sure this matches your repo name
+  build: {
+    outDir: 'dist',
+  }
 });

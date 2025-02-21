@@ -1,24 +1,23 @@
 {
-  "homepage": "https://glxy-arcane.github.io/",
+  "homepage": "https://glxy-arcane.github.io/glxy-arcane/",
   "name": "glxy-arcane",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "test": "mocha",
+    "test": "node test.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "test": "^3.3.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

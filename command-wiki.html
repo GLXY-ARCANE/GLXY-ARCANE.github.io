@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcane Order Stream Commands Wiki</title>
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font for a modern look -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom Fonts - You may need to load these if you want them to work */
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@8..100,200..800&family=Saira:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+      /* Custom Styles to enforce font and dark mode defaults */
+      :root {
+        --font-main: "Inter", sans-serif;
+        --color-primary: #ff7043; /* Orange Accent */
+        --color-secondary: #0077cc; /* Blue Accent */
+        --nav-height: 4.5rem; /* Explicitly defining height of the top navbar */
+
+        /* Colors - Uniform Naming Convention: --color-[name]-[shade] */
+        --color-black: #121212;
+        --color-gray-dark: #1e1e1e;
+        --color-gray-medium: #292929;
+        --color-card-background: #242424;
+
+        --color-blue: #0077cc;
+        --color-blue-dark: #005a99;
+
+        --color-orange: #ff7043;
+        --color-orange-subtle: #ff9966;
+
+        --color-gold: #ffd700;
+        --color-red: #e53935;
+
+        --color-text-light: #c5c6c7;
+        --color-text-highlight: #ffffff;
+
+        /* Spacing - Define a consistent scale for margins/padding */
+        --spacing-xs: 5px;
+        --spacing-sm: 10px;
+        --spacing-md: 20px;
+        --spacing-lg: 30px;
+        --spacing-xl: 50px;
+
+        /* Borders & Shadows */
+        --border-radius-base: 10px;
+        --shadow-base: 0 4px 15px rgba(0, 0, 0, 0.4);
+        --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6),
+          0 0 10px rgba(255, 112, 67, 0.5);
+
+        /* Typography */
+        --font-main: "Saira", sans-serif;
+        --font-header: "Bricolage Grotesque", sans-serif;
+        --font-code: "Roboto Mono", monospace;
+
+        --font-size-h1: 4rem;
+        --font-size-h2: 3rem;
+        --font-size-h3: 1.4rem;
+        --font-size-subtitle: 1.5rem;
+        --font-size-base: 1.1rem; /* Base paragraph text size */
+      }
+      body {
+        font-family: var(--font-main);
+        background-color: #121212; /* Darker background */
+      }
+      /* Style the command list for better readability */
+      .command-item {
+        border-left: 4px solid var(--color-primary);
+        transition: all 0.2s ease;
+      }
+      .command-item:hover {
+        background-color: #242424; /* Slightly lighter on hover */
+        border-left-color: #ffd700; /* Gold/Yellow on hover */
+      }
+
+      /* TOP NAVBAR STYLES */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 20; /* Ensure it stays above the sidebar */
+        background-color: var(--color-gray-dark);
+        height: var(--nav-height); /* Set height from variable */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-lg);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        border-bottom: 3px solid var(--color-orange);
+      }
+      
+      /* FIX: Removed fixed height constraint. The sidebar should now stretch using flexbox 
+         and only be 'sticky' at the top, allowing it to extend to the bottom of the main content.
+      */
+      #sidebar {
+        top: var(--nav-height); /* Starts below the navbar */
+        z-index: 10;
+        transition: width 0.3s ease;
+      }
+      
+      /* Additional styles for sidebar links */
+      .sidebar-link.active {
+        background-color: rgba(92, 121, 143, 0.2);
+        color: white;
+        border-right: 3px solid var(--color-primary);
+        font-weight: 700;
+      }
+
+      /* Mobile: Disable sticky/full height constraint on smaller screens */
+      @media (max-width: 1024px) {
+        #sidebar {
+          position: static;
+          height: auto;
+          width: 100%;
+          overflow-x: auto;
+          top: 0; 
+        }
+      }
+      /* Code styling for commands */
+      .command-code {
+        font-family: var(--font-code); /* Use code font variable */
+        background-color: #333;
+        color: var(--color-primary);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      /* Specific styling for the arguments [like this] within the command code block */
+      .command-code .arg-highlight {
+        color: #00bfff; /* Bright cyan/blue for arguments */
+        font-weight: 600;
+      }
+
+      .nav-link {
+        font-family: var(--font-header);
+        font-weight: 600;
+        color: var(--color-text-light);
+        text-transform: uppercase;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border-radius: var(--spacing-xs);
+      }
+
+      .nav-link:hover {
+        color: var(--color-text-highlight);
+        background-color: var(--color-blue-dark);
+      }
+    </style>
+</head>
+<body class="bg-zinc-900 text-gray-200">
+    <!-- TOP NAVBAR (Sticky) -->
+    <nav class="navbar">
+      <a href="/index.html" class="nav-link">Home</a>
+      <a href="command-wiki.html" class="nav-link">Command Wiki</a>
+    </nav>
+    
+    <!-- Main Container Layout (Grid on Desktop, Stacked on Mobile) -->
+    <!-- Added min-h-screen back here to ensure the container is tall enough for the sidebar -->
+    <div class="lg:flex min-h-screen"> 
+      <!-- Sidebar Navigation -->
+      <nav 
+        id="sidebar" 
+        class="w-full lg:w-64 p-4 overflow-y-auto lg:sticky h-full"
+        style="top: var(--nav-height);"
+      >
+        <h1
+          class="text-3xl font-bold mb-6 text-center text-orange-500 border-b-2 border-blue-500 pb-2"
+        >
+          Stream Wiki
+        </h1>
+
+        <!-- Search Bar -->
+        <div
+          class="mb-6 sticky top-0  pt-1 pb-2 border-b border-zinc-700"
+        >
+          <input
+            type="text"
+            id="commandSearch"
+            oninput="filterCommands()"
+            placeholder="Search commands..."
+            class="w-full p-2 rounded-lg bg-zinc-700 text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 border-none"
+          />
+        </div>
+
+        <!-- Category Links -->
+        <div
+          id="categoryLinks"
+          class="flex flex-row lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 pb-4"
+        >
+          <!-- Links will be dynamically generated here -->
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main id="mainContent" class="flex-1 p-6 lg:p-10">
+        <h2 class="text-5xl font-extrabold mb-8 text-white">
+          All Stream Commands
+        </h2>
+        <p class="text-gray-400 mb-8">
+          Commands that require points have a price tag in the top right corner
+          of the command block.
+        </p>
+
+        <!-- Command Sections will be dynamically generated here -->
+        <div id="commandSections" class="space-y-12">
+          <!-- Content will be rendered by JS -->
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // --- 1. COMMAND DATA (Updated with all user commands, arguments, and costs) ---
+      const commandData = [
+        {
+          id: "info_links",
+          title: "Info & Links",
+          description:
+            "Quick access to essential links, social media, and channel details.",
+          commands: [
+            {
+              name: "!discord",
+              description: "Provides the Discord link in chat.",
+            },
+            { name: "!website", description: "Provides website link." },
+            { name: "!merch", description: "Provides a link to my merch." },
+            { name: "!rules", description: "Provides the channel rules." },
+            {
+              name: "!id",
+              description:
+                "Provides my Call of Duty Activision ID so you can send a friend request.",
+            },
+            {
+              name: "!goalinfo",
+              description:
+                "Gives information about the current stream donation goal.",
+            },
+            {
+              name: "!cookie",
+              description:
+                "Gives a funny virtual cookie to the user who used the command.",
+            },
+          ],
+        },
+        {
+          id: "points_gambling",
+          title: "Points & Progression",
+          description:
+            "Commands for checking point balances and wagering Mana Crystals.",
+          commands: [
+            {
+              name: "!points",
+              description: "Displays your current points balance.",
+            },
+            { name: "!level", description: "Shows your current level." },
+            {
+              name: "!gamble [amount | all]",
+              description:
+                'Wagers your points against the odds. Replace [amount] with a number or "all".',
+            },
+            {
+              name: "!slots [amount | all]",
+              description:
+                "Same point wagering mechanic as !gamble, but uses a slots machine animation.",
+            },
+          ],
+        },
+        {
+          id: "fun_interactive",
+          title: "Fun & Interactive",
+          description:
+            "Commands to interact with the chat, the stream, or other viewers.",
+          commands: [
+            {
+              name: "!slap [user]",
+              description:
+                '"Slaps" whatever user or object you put after the command.',
+            },
+            {
+              name: "!pp",
+              description:
+                "Gives a funny random number 1-12 relating to... their virtual size. It's all a joke!",
+            },
+            {
+              name: "!cowbell",
+              description:
+                "Shows a fun cowbell video from the classic SNL skit on screen.",
+            },
+            {
+              name: "!scare",
+              description: "Plays a scary video on screen (Use sparingly!).",
+            },
+          ],
+        },
+        {
+          id: "on_stream_dialog",
+          title: "On-Screen Dialogs",
+          description:
+            "Commands that trigger the retro NES-style dialog window on stream.",
+          commands: [
+            {
+              name: "!retro [message]",
+              description:
+                "Shows a retro NES style dialog window on my screen with your custom message.",
+            },
+            {
+              name: "!hydrate",
+              description:
+                "Shows the NES Style window with a message reminding me to drink water.",
+            },
+            {
+              name: "!posture / !posturecheck",
+              description:
+                "Shows the NES style window with a message reminding me to check my posture.",
+            },
+          ],
+        },
+        {
+          id: "ai_personas",
+          title: "AI Chat Personas",
+          description:
+            "Send a prompt to the generative AI using a specific persona.",
+          commands: [
+            {
+              name: "!ai [prompt]",
+              description:
+                "The default AI persona. Sends your message as a prompt to the generative AI.",
+            },
+            {
+              name: "!randy [prompt]",
+              description: "Scout Master Randy persona: Wise and outdoorsy.",
+            },
+            {
+              name: "!bb [prompt]",
+              description: "B*tch Bot Persona: Sassy and unhelpful.",
+            },
+            {
+              name: "!sadbot [prompt]",
+              description: "Sad Bot Persona: Melancholic and existential.",
+            },
+            {
+              name: "!happybot [prompt]",
+              description:
+                "Happy Bot Persona: Enthusiastic and overly cheerful.",
+            },
+            {
+              name: "!mm [prompt]",
+              description: "Medieval Knight Persona: Formal and chivalrous.",
+            },
+            {
+              name: "!ferb [prompt]",
+              description:
+                "Ferb Persona: Answers in quiet, thoughtful sentences.",
+            },
+          ],
+        },
+        {
+          id: "cost_commands",
+          title: "Paid Commands",
+          description:
+            "These commands require a point expenditure to use. Use with caution!",
+          commands: [
+            {
+              name: "!tts [message]",
+              description:
+                "Text to speech message that plays audibly on stream.",
+              cost: 250,
+            },
+          ],
+        },
+      ];
+
+      // --- 2. CORE RENDERING FUNCTION ---
+      function renderCommands() {
+        const sectionsContainer = document.getElementById("commandSections");
+        const linksContainer = document.getElementById("categoryLinks");
+        sectionsContainer.innerHTML = "";
+        linksContainer.innerHTML = "";
+
+        commandData.forEach((category) => {
+          // Skip rendering empty categories
+          if (category.commands.length === 0) return;
+
+          // A. Render Sidebar Link
+          const link = document.createElement("a");
+          link.href = `#${category.id}`;
+          link.className =
+            "sidebar-link block p-3 rounded-lg text-gray-300 hover:bg-zinc-700 transition duration-150 ease-in-out";
+          link.textContent = category.title;
+          linksContainer.appendChild(link);
+
+          // B. Render Main Section
+          const section = document.createElement("section");
+          section.id = category.id;
+          section.className = "category-section pt-10"; 
+
+          let html = `
+                <h3 class="text-4xl font-bold text-blue-400 mb-2 border-b border-zinc-700 pb-1">${category.title}</h3>
+                <p class="text-gray-400 mb-6">${category.description}</p>
+                <div class="space-y-4">
+            `;
+
+          category.commands.forEach((cmd) => {
+            // Determine the cost tag HTML
+            let costTag = "";
+            if (cmd.cost && cmd.cost > 0) {
+              costTag = `<span class="bg-red-700 text-white text-xs font-bold px-2 py-0.5 rounded-full absolute top-2 right-2 shadow-lg">Cost: ${cmd.cost} Points</span>`;
+            }
+
+            // Highlight arguments [like this] within the command name
+            const highlightedName = cmd.name.replace(
+              /(\[.*?\])/g,
+              '<span class="arg-highlight">$1</span>'
+            );
+
+            html += `
+                        <div class="command-item bg-zinc-800 p-4 rounded-lg shadow-md flex flex-col md:flex-row md:items-center relative">
+                            ${costTag}
+                            <div class="command-code text-lg font-mono px-3 py-1 rounded-md mb-2 md:mb-0 md:mr-6 w-full md:w-auto text-center flex-shrink-0">
+                                ${highlightedName}
+                            </div>
+                            <div class="flex-1 text-gray-300">${cmd.description}</div>
+                        </div>
+                    `;
+          });
+
+          html += `</div>`;
+          section.innerHTML = html;
+          sectionsContainer.appendChild(section);
+        });
+      }
+
+      // --- 3. SEARCH/FILTER FUNCTIONALITY ---
+      function filterCommands() {
+        const query = document
+          .getElementById("commandSearch")
+          .value.toLowerCase();
+        const allCommands = document.querySelectorAll(".command-item");
+        const allSections = document.querySelectorAll(".category-section");
+
+        allCommands.forEach((item) => {
+          const commandText = item.textContent.toLowerCase();
+          if (commandText.includes(query)) {
+            item.style.display = "flex"; // Show if it matches
+          } else {
+            item.style.display = "none"; // Hide if it doesn't match
+          }
+        });
+
+        // Hide sections that have no visible commands
+        allSections.forEach((section) => {
+          // Find all immediate command children that are currently displayed
+          const visibleCommands = Array.from(
+            section.querySelectorAll(".command-item")
+          ).filter((cmd) => cmd.style.display !== "none");
+          section.style.display = visibleCommands.length > 0 ? "block" : "none";
+        });
+      }
+
+      // --- 4. NAVIGATION ACTIVE STATE LOGIC (Scroll Spy) ---
+      function updateActiveLink() {
+        const sections = document.querySelectorAll(".category-section");
+        const links = document.querySelectorAll(".sidebar-link");
+        let current = "";
+
+        // Get the computed height of the navbar element
+        const navBarHeight = document.querySelector('.navbar').offsetHeight;
+        
+        // Find the section currently in the viewport
+        sections.forEach((section) => {
+          // Offset must account for the height of the sticky navbar (navBarHeight) 
+          // plus any extra padding we want (e.g., 20px)
+          const scrollOffset = navBarHeight + 20; 
+          const sectionTop = section.offsetTop - scrollOffset;
+
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        // Update active state
+        links.forEach((link) => {
+          link.classList.remove("active");
+          if (link.href.endsWith(`#${current}`)) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      // --- 5. INITIALIZATION ---
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCommands();
+        updateActiveLink(); // Set initial active state
+        window.addEventListener("scroll", updateActiveLink);
+
+        // Add smooth scrolling to sidebar links
+        document.querySelectorAll(".sidebar-link").forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            
+            // Get the target section
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                // Get the computed height of the navbar element
+                const navBarHeight = document.querySelector('.navbar').offsetHeight;
+                
+                // Calculate the position to scroll to: target's top position minus the navbar height
+                const scrollPosition = targetElement.offsetTop - navBarHeight;
+
+                window.scrollTo({
+                    top: scrollPosition,
+                    behavior: "smooth"
+                });
+            }
+          });
+        });
+      });
+    </script>
+</body>
+</html>

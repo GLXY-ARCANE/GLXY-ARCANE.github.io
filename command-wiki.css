@@ -1,0 +1,87 @@
+/* This file contains styles specific to the command-wiki.html page.
+It is loaded *after* styles.css and can therefore override or extend base styles. 
+*/
+
+.wiki-page-container {
+    padding-top: 50px;
+}
+
+.wiki-intro {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 30px;
+    color: var(--color-text-light);
+}
+
+.wiki-card {
+    /* Extending the base .card style */
+    border-left: 5px solid var(--color-orange); /* Use orange accent for this page */
+    margin-bottom: 40px;
+}
+
+.wiki-card h3 {
+    font-family: var(--font-header);
+    font-size: 1.8rem;
+    color: var(--color-blue);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-medium-gray);
+    padding-bottom: 5px;
+}
+
+.command-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.command-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-dark-gray);
+    transition: background-color 0.2s ease;
+}
+
+.command-item:hover {
+    background-color: var(--color-dark-gray);
+    padding-left: 10px;
+}
+
+.command-item:last-child {
+    border-bottom: none;
+}
+
+.command {
+    font-family: var(--font-code);
+    color: var(--color-orange);
+    font-size: 1.1rem;
+    background-color: var(--color-orange-dark);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.description {
+    flex-grow: 1;
+    margin-left: 30px;
+    text-align: right;
+    color: var(--color-text-light);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    .command-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .command {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+    .description {
+        margin-left: 0;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+}
